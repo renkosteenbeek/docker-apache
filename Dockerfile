@@ -4,6 +4,11 @@ FROM httpd:2.4-alpine
 RUN apk update; \
     apk upgrade;
 
+RUN apk add tzdata; \
+    cp /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime; \
+    echo "Europe/Amsterdam" > /etc/timezone; \
+    apk del tzdata;
+
 # Include script to set Wordpress file persmissions
 COPY wppermissions.sh /usr/sbin/wppermissions
 RUN chmod +x /usr/sbin/wppermissions
