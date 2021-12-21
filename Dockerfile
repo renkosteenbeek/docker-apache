@@ -1,5 +1,6 @@
 ARG APACHE_VERSION=""
-FROM httpd:2.4-alpine
+ARG ARCH=
+FROM ${ARCH}httpd:2.4-alpine
 
 RUN apk update; \
     apk upgrade;
